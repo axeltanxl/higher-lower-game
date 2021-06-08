@@ -1,9 +1,9 @@
-# 3/6/21 - CODE SHOULD BE DONE, TRY TESTING A FEW MORE TIMES
 import random
 from art import logo, vs
 from game_data import data
 import os
 
+# Main game loop
 def main():
     global score, answer, account_a, account_b
     score = 0
@@ -29,12 +29,15 @@ def main():
             account_b = account_generator()
             continue
 
+# Clear screen to update score and accounts
 def cls():
-    os.system('cls' if os.name=='nt' else 'clear')
+    os.system('cls' if os.name == 'nt' else 'clear')
 
+# Generate accounts to compare
 def account_generator():
     return random.choice(data)
 
+# Printing function
 def main_print(account_a, account_b):
     print(
         f"Compare A: {account_a['name']}, a {account_a['description']}, from {account_a['country']}.")
@@ -42,6 +45,7 @@ def main_print(account_a, account_b):
     print(
         f"Against B: {account_b['name']}, a {account_b['description']}, from {account_b['country']}.")
 
+# Check answer and update score
 def check_answer():
     global score, answer
     if answer.lower() == 'a' and account_a['follower_count'] > account_b['follower_count']:
@@ -50,5 +54,6 @@ def check_answer():
         score += 1
     else:
         answer = 0
+
 
 main()
